@@ -1,5 +1,36 @@
-<%- include ('partials/header.ejs') %>
 
-TODO: Make a form for adding a game
-
-<%- include ('partials/footer.ejs') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a New Board Game</title>
+    <style>
+      html {
+        display: none;
+      }
+    </style>
+</head>
+<body>
+    <%- include('partials/header.ejs') %>
+    <div class="container">
+        <h1>Add a New Board Game</h1>
+        <form action="/add-game" method="POST" class="form">
+            <div class="input-group">
+                <label for="title">Game Title:</label>
+                <input type="text" id="title" name="title" required autocomplete="off" placeholder="Start typing a game title...">
+                <div id="autocomplete-results" class="autocomplete-results"></div>
+            </div>
+            <input type="hidden" id="boardgameid" name="boardgameid">
+            <input type="hidden" id="imageurl" name="imageurl">
+            <button type="submit" class="submit-button">Add Game</button>
+        </form>
+        <div class="button-container">
+            <a href="/" class="cancel-button">Cancel</a>
+        </div>
+    </div>
+    <link rel="stylesheet" href="/styles/add-game.css">
+    <script src="/scripts/autocomplete.js"></script>
+    <%- include('partials/footer.ejs') %>
+</body>
+</html>

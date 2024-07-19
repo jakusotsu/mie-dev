@@ -1,7 +1,15 @@
+let boardgames = [];
+let sessions = [];
+
 module.exports = {
 	getHomePage: (req, res) => {
 		// TODO: Make query for games list
-		let query = "SELECT 1 AS t";
+		res.render('index.ejs', {
+			title: 'Board Games | View Games',
+			/*players: result,*/
+			boardgames
+		});
+/*		let query = "SELECT 1 AS t";
 
 		db.query(query, (err, result) => {
 			if (err) {
@@ -9,8 +17,10 @@ module.exports = {
 			}
 			res.render('index.ejs', {
 				title: 'Board Games | View Games',
-				players: result
+				players: result,
 			});
-		});
-	}
+		});*/
+	},
+	boardgames,
+	sessions
 };
