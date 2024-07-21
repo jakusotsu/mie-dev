@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const input = document.getElementById('title');
-    const idInput = document.getElementById('boardgameid');
+    const idInput = document.getElementById('boardgame_id');
     const imageInput = document.getElementById('imageurl');
     const resultsDiv = document.getElementById('autocomplete-results');
 
@@ -65,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 div.addEventListener('click', async () => {
                     const imageUrl = await fetchImageUrl(id);
-                    console.log(imageUrl);
                     input.value = name;
                     idInput.value = id;
                     imageInput.value = imageUrl;
@@ -94,10 +93,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Function to check if boardgameid is set and enable/disable the button
+    // Function to check if boardgame_id is set and enable/disable the button
     function updateButtonState() {
-        console.log('updating button state');
-        const boardgameId = document.getElementById('boardgameid').value;
+        const boardgameId = document.getElementById('boardgame_id').value;
         const submitButton = document.getElementById('submit-button');
         if (boardgameId === null || boardgameId.trim() === '') {
             submitButton.disabled = true;
@@ -106,8 +104,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Add event listener to monitor changes to boardgameid
-    document.getElementById('boardgameid').addEventListener('input', updateButtonState);
+    // Add event listener to monitor changes to boardgame_id
+    document.getElementById('boardgame_id').addEventListener('input', updateButtonState);
 
     // Initial check when the page loads
     updateButtonState();

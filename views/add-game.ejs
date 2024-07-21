@@ -5,11 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add a New Board Game</title>
-    <style>
-      html {
-        display: none;
-      }
-    </style>
+    <link rel="preload" href="/styles/add-game.css" as="style">
+    <link rel="stylesheet" href="/styles/add-game.css">
 </head>
 <body>
     <%- include('partials/header.ejs') %>
@@ -21,7 +18,7 @@
                 <input type="text" id="title" name="title" required autocomplete="off" placeholder="Start typing a game title...">
                 <div id="autocomplete-results" class="autocomplete-results"></div>
             </div>
-            <input type="hidden" id="boardgameid" name="boardgameid" value="" required>
+            <input type="hidden" id="boardgame_id" name="boardgame_id" value="" required>
             <input type="hidden" id="imageurl" name="imageurl" required>
             <button type="submit" id="submit-button" class="submit-button">Add Game</button>
         </form>
@@ -30,7 +27,7 @@
         </div>
     </div>
     <link rel="stylesheet" href="/styles/add-game.css">
-    <script src="/scripts/autocomplete.js"></script>
+    <script src="/scripts/add-game.js"></script>
     <%- include('partials/footer.ejs') %>
 </body>
 </html>

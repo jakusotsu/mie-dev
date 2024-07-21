@@ -1,19 +1,20 @@
 # TODO: add mysql/mariadb table definitions
--- Create the Boardgame table
-CREATE TABLE Boardgame (
+-- Create Boardgame table
+CREATE TABLE IF NOT EXISTS Boardgame (
     boardgame_id INT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     image VARCHAR(255) NOT NULL
 );
 
--- Create the Session table
-CREATE TABLE Session (
-    session_id INT AUTO_INCREMENT PRIMARY KEY,
-    boardgame_id INT NOT NULL,
-    session_date DATE NOT NULL,
-    session_time TIME NOT NULL,
+-- Create Session table
+CREATE TABLE IF NOT EXISTS Session (
+    session_id INT PRIMARY KEY AUTO_INCREMENT,
+    boardgame_id INT,
+    session_date DATE,
+    session_time TIME,
     FOREIGN KEY (boardgame_id) REFERENCES Boardgame(boardgame_id)
 );
+
 
 # TODO: add sample data
 -- Insert sample data into Boardgame table

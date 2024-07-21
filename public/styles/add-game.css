@@ -1,6 +1,4 @@
-html {
-	display: block;
-}
+
 
 body {
 	font-family: Arial, sans-serif;
@@ -113,9 +111,9 @@ input[type="text"] {
 	transition: background-color 0.3s;
 	text-decoration: none;
 	color: #fff;
-	background-color: #e74c3c;
+	background-color: #3498db;
 }
 
 	.cancel-button:hover {
-		background-color: #c0392b;
+		background-color: #2980b9;
 	}

@@ -1,15 +1,15 @@
 const indexModule = require('./index');
-let boardgames = indexModule.boardgames;
 module.exports = {
 	getAdd: (req, res) => {
+		const boardgames = indexModule.getBoardgamesState();
 		res.render('add-game.ejs', {
 			title: 'Board Games | Add game',
 			boardgames,
 		});
 	},
 	getEdit: (req, res) => {
-		const gameId = req.params.id;
-		const boardgame = boardgames.find(game => game.id === gameId);
+		const boardgameEditId = Number(req.params.id);
+		const boardgame = indexModule.getBoardgamesState().find(game => Number(game.boardgame_id) === Number(boardgameEditId));
 		res.render('edit-game.ejs', {
 			title: 'Board Games | Edit game',
 			boardgame,
@@ -17,32 +17,47 @@ module.exports = {
 	},
 	postAdd: (req, res) => {
 		let newGame = req.body;
-		if (newGame) {
-			let boardGameData = {
-				name: newGame.title,
-				id: newGame.boardgameid,
-				image: newGame.imageurl
-			}
-			boardgames.push(boardGameData);
-		}
+        if (newGame) {
+            const query = `
+    INSERT INTO Boardgame (boardgame_id, name, image)
+    VALUES (?, ?, ?);
+`;
+
+            const values = [
+                Number(newGame.boardgame_id),
+                newGame.title,
+                newGame.imageurl
+            ];
+
+            db.query(query, values, (err, result) => {
+                if (err) {
+					console.error('Error inserting new board game:', err);
+					alert('Error inserting new board game:', err);
+					res.redirect('/'); // Handle error appropriately
+                }
+                console.log('New board game added:', result);
+            });
+        }
 		// TODO db.query to insert game
 
 		// If all went well, go back to main screen
 		res.redirect('/');
 	},
 	postEdit: (req, res) => {
-		/*let id = req.params.id;*/
-		console.log(req.params);
-		console.log(req.body);
 		let deleteGame = req.params;
 
 		if (deleteGame) {
-			indexModule.boardgames = indexModule.boardgames.filter((bg) => bg.id !== deleteGame.id);
+			try {
+				// Delete sessions associated with the boardgame
+				db.query('DELETE FROM Session WHERE boardgame_id = ?', [Number(deleteGame.id)]);
+				db.query('DELETE FROM Boardgame WHERE boardgame_id = ?', [Number(deleteGame.id)]);
+			} catch (err) {
+				console.error('Error executing query', err);
+			}
 		}
 		// TODO db.query to update game
 
 		res.redirect('/');
-	},
-	boardgames
+	}
 
 };

@@ -1,78 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a New Board Game</title>
+    <link rel="preload" href="/styles/edit-game.css" as="style">
+    <link rel="stylesheet" href="/styles/edit-game.css">
+</head>
+<body>
 <%- include('partials/header.ejs') %>
-
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        margin: 0;
-        padding: 0;
-    }
-
-    .container {
-        width: 90%;
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-        background: #fff;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        text-align: center;
-    }
-
-    h1 {
-        color: #333;
-        margin-bottom: 20px;
-    }
-
-    img {
-        max-width: 100%;
-        max-height: 40vh;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
-    }
-
-    .button-container {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-    }
-
-    .button {
-        padding: 10px 20px;
-        border: none;
-        border-radius: 4px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        text-decoration: none;
-        color: #fff;
-    }
-
-    .add-session-button {
-        background-color: #3498db;
-    }
-
-    .add-session-button:hover {
-        background-color: #2980b9;
-    }
-
-    .delete-button {
-        background-color: #e74c3c;
-    }
-
-    .delete-button:hover {
-        background-color: #c0392b;
-    }
-</style>
-
 <div class="container">
     <h1><%= boardgame.name %></h1>
     <img src="<%= boardgame.image %>" alt="<%= boardgame.name %>">
     <div class="button-container">
-        <a href="/add-game-session/<%= boardgame.id %>" class="button add-session-button">Add New Session</a>
-        <form action="/edit-game/<%= boardgame.id %>" method="POST" style="margin: 0;">
-            <input type="hidden" name="boardgame_id" value="<%= boardgame.id %>">
+        <a href="/add-game-session/<%= boardgame.boardgame_id %>" class="button add-session-button">Add New Session</a>
+        <form action="/edit-game/<%= boardgame.boardgame_id %>" method="POST" style="margin: 0;">
+            <input type="hidden" name="boardgame_id" value="<%= boardgame.boardgame_id %>">
             <button type="submit" class="button delete-button">Delete Board Game</button>
         </form>
         <a href="/" class="button add-session-button">Cancel</a>
@@ -80,3 +23,5 @@
 </div>
 
 <%- include('partials/footer.ejs') %>
+</body>
+</html>
