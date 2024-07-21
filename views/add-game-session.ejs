@@ -54,15 +54,20 @@
         background-color: #3498db;
     }
 
-        .add-session-button:hover {
+        .add-session-button:disabled {
+            background-color: #b3c0ce;
+            cursor: not-allowed;
+        }
+
+        .add-session-button:hover:not(:disabled) {
             background-color: #2980b9;
         }
 
-    .delete-button {
+    .cancel-button {
         background-color: #e74c3c;
     }
 
-        .delete-button:hover {
+        .cancel-button:hover {
             background-color: #c0392b;
         }
 
@@ -81,13 +86,15 @@
         color: #333;
     }
 
-    input[type="date"] {
+    input[type="date"],
+    input[type="time"] {
         width: calc(100% - 22px);
         padding: 10px;
         font-size: 16px;
         border: 1px solid #ddd;
         border-radius: 4px;
         box-sizing: border-box;
+        margin-bottom: 10px; /* Add margin between inputs */
     }
 
     .submit-button {
@@ -102,7 +109,7 @@
         background-color: #3498db;
     }
 
-        .submit-button:hover {
+        .submit-button:hover:not(:disabled) {
             background-color: #2980b9;
         }
 
@@ -115,12 +122,12 @@
         transition: background-color 0.3s;
         text-decoration: none;
         color: #fff;
-        background-color: #e74c3c;
+        background-color: #3498db;
         margin-left: 10px;
     }
 
         .cancel-button:hover {
-            background-color: #c0392b;
+            background-color: #2980b9;
         }
 </style>
 
@@ -133,10 +140,14 @@
             <div class="form-group">
                 <label for="session-date">Session Date:</label>
                 <input type="date" id="session-date" name="session_date" required>
+
+                <label for="session-time">Session Time:</label>
+                <input type="time" id="session-time" name="session_time" required>
+
                 <input type="hidden" id="boardgame-id" name="boardgame_id" value="<%= boardgame.id %>" required>
             </div>
             <div class="button-container">
-                <button type="submit" class="submit-button">Add New Session</button>
+                <button type="submit" class="submit-button add-session-button" id="add-session-button" disabled>Add New Session</button>
                 <a href="/edit-game/<%= boardgame.id %>" class="cancel-button">Cancel</a>
             </div>
         </form>
@@ -144,3 +155,28 @@
 </div>
 
 <%- include('partials/footer.ejs') %>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const dateInput = document.getElementById('session-date');
+        const timeInput = document.getElementById('session-time');
+        const addButton = document.getElementById('add-session-button');
+
+        const validateInputs = () => {
+            const dateValue = dateInput.value;
+            const timeValue = timeInput.value;
+
+            if (dateValue && timeValue) {
+                addButton.disabled = false;
+            } else {
+                addButton.disabled = true;
+            }
+        };
+
+        dateInput.addEventListener('input', validateInputs);
+        timeInput.addEventListener('input', validateInputs);
+
+        // Initial validation on page load
+        validateInputs();
+    });
+</script>

@@ -67,6 +67,10 @@ input[type="text"] {
 	.submit-button:hover {
 		background-color: #2980b9;
 	}
+	.submit-button:disabled {
+		background-color: #bdc3c7;
+		cursor: not-allowed;
+	}
 
 /* Autocomplete results styling */
 .autocomplete-results {

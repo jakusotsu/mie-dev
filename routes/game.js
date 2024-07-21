@@ -31,11 +31,18 @@ module.exports = {
 		res.redirect('/');
 	},
 	postEdit: (req, res) => {
-		let id = req.params.id;
+		/*let id = req.params.id;*/
+		console.log(req.params);
+		console.log(req.body);
+		let deleteGame = req.params;
 
+		if (deleteGame) {
+			indexModule.boardgames = indexModule.boardgames.filter((bg) => bg.id !== deleteGame.id);
+		}
 		// TODO db.query to update game
 
 		res.redirect('/');
-	}
+	},
+	boardgames
 
 };

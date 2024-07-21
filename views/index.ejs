@@ -1,127 +1,195 @@
 <%- include('partials/header.ejs') %>
 
-<style>
-    html {
-        display: block;
-    }
-
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        margin: 0;
-        padding: 0;
-    }
-
-    .container {
-        width: 90%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-        background: #fff;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    h1 {
-        text-align: center;
-        color: #333;
-        margin-bottom: 20px;
-    }
-
-    .boardgame-container {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(2, 120px);
-        gap: 20px;
-        height: 260px;
-        overflow-y: scroll;
-        padding: 20px;
-        max-width: 1200px;
-        margin: 0 auto;
-        box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .boardgame-item {
-        position: relative;
-        overflow: hidden;
-        border-radius: 12px;
-        background: #fff;
-        width: 120px;
-        height: 120px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        transition: transform 0.2s ease-in-out;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        text-decoration: none;
-        color: inherit;
-    }
-
-        .boardgame-item img {
-            max-width: 100%;
-            max-height: 100%;
-            height: auto;
-            width: auto;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Board Games</title>
+    <style>
+        html {
+            display: block;
         }
 
-        .boardgame-item h2 {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.5);
-            color: #fff;
-            padding: 10px;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
             margin: 0;
-            font-size: 14px;
+            padding: 0;
         }
 
-    .add-game-item {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #3498db;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 12px;
-        font-size: 1rem;
-        transition: background-color 0.3s ease;
-        width: 120px;
-        height: 120px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-        .add-game-item:hover {
-            background-color: #2980b9;
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-    .boardgame-container::-webkit-scrollbar {
-        width: 10px;
-    }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
 
-    .boardgame-container::-webkit-scrollbar-thumb {
-        background: #ccc;
-        border-radius: 5px;
-    }
+        .boardgame-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 120px);
+            gap: 20px;
+            height: 260px;
+            overflow-y: scroll;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-    .boardgame-container::-webkit-scrollbar-track {
-        background: #f4f4f4;
-        border-radius: 5px;
-    }
-</style>
+        .boardgame-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #fff;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: transform 0.2s ease-in-out;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            color: inherit;
+        }
 
-<div class="container">
-    <h1>List of Board Games</h1>
-    <div class="boardgame-container">
-        <a class="boardgame-item add-game-item" href="/add-game">Add Game</a>
-        <% boardgames.forEach(function(boardgame) { %>
-        <a class="boardgame-item" href="/edit-game/<%= boardgame.id %>">
-            <img src="<%= boardgame.image %>" alt="<%= boardgame.name %>">
-            <h2><%= boardgame.name %></h2>
-        </a>
-        <% }) %>
+            .boardgame-item img {
+                max-width: 100%;
+                max-height: 100%;
+                height: auto;
+                width: auto;
+            }
+
+            .boardgame-item h2 {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.5);
+                color: #fff;
+                padding: 10px;
+                margin: 0;
+                font-size: 14px;
+            }
+
+            .boardgame-item:hover {
+                transform: scale(1.1);
+            }
+
+        .add-game-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+            width: 120px;
+            height: 120px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+            .add-game-item:hover {
+                background-color: #2980b9;
+            }
+
+        .boardgame-container::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .boardgame-container::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 5px;
+        }
+
+        .boardgame-container::-webkit-scrollbar-track {
+            background: #f4f4f4;
+            border-radius: 5px;
+        }
+
+        .session-container {
+            margin-top: 40px;
+        }
+
+        .session-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 8px;
+            background: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+            .session-item img {
+                width: 80px;
+                height: 80px;
+                border-radius: 8px;
+                margin-right: 20px;
+            }
+
+            .session-item .info {
+                display: flex;
+                flex-direction: column;
+            }
+
+                .session-item .info h3 {
+                    margin: 0;
+                    font-size: 16px;
+                    color: #333;
+                }
+
+                .session-item .info .date-time {
+                    color: #777;
+                }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Available Board Games</h1>
+        <div class="boardgame-container">
+            <a class="boardgame-item add-game-item" href="/add-game">Add Game</a>
+            <% boardgames.forEach(function(boardgame) { %>
+            <a class="boardgame-item" href="/edit-game/<%= boardgame.id %>">
+                <img src="<%= boardgame.image %>" alt="<%= boardgame.name %>">
+                <h2><%= boardgame.name %></h2>
+            </a>
+            <% }) %>
+        </div>
+
+        <div class="session-container">
+            <h2>Board Game Sessions</h2>
+            <% sessions.forEach(function(session) { %>
+            <%
+            // Find the boardgame corresponding to the session's boardgame_id
+            const boardgame = boardgames.find(bg => bg.id === session.id);
+            const boardgameImage = boardgame ? boardgame.image : 'https://cf.geekdo-images.com/zxVVmggfpHJpmnJY9j-k1w__imagepage/img/6AJ0hDAeJlICZkzaeIhZA_fSiAI=/fit-in/900x600/filters:no_upscale():strip_icc()/pic1657689.jpg';
+            const sessionDateTime = `${session.session_date} ${convertTo12Hour(session.session_time)}`;
+            %>
+            <div class="session-item">
+                <img src="<%= boardgameImage %>" alt="<%= boardgameImage %>">
+                <div class="info">
+                    <h3><%= boardgame ? boardgame.name : 'Unknown Boardgame' %></h3>
+                    <div class="date-time"><%= sessionDateTime %></div>
+                </div>
+            </div>
+            <% }) %>
+        </div>
     </div>
-</div>
 
-<%- include('partials/footer.ejs') %>
+    <%- include('partials/footer.ejs') %>
+</body>
+</html>

@@ -16,8 +16,9 @@ module.exports = {
 		let newSession = req.body;
 		if (newSession) {
 			let sessionData = {
-				id: newSession.boardgameid,
-				session_date: newSession.session_date
+				id: newSession.boardgame_id,
+				session_date: newSession.session_date,
+				session_time: newSession.session_time
 			}
 			sessions.push(sessionData);
 		}

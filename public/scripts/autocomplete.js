@@ -70,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     idInput.value = id;
                     imageInput.value = imageUrl;
                     resultsDiv.innerHTML = '';
+                    updateButtonState();
                 });
 
                 resultsDiv.appendChild(div);
@@ -92,4 +93,24 @@ document.addEventListener('DOMContentLoaded', () => {
             resultsDiv.innerHTML = '';
         }
     });
+
+    // Function to check if boardgameid is set and enable/disable the button
+    function updateButtonState() {
+        console.log('updating button state');
+        const boardgameId = document.getElementById('boardgameid').value;
+        const submitButton = document.getElementById('submit-button');
+        if (boardgameId === null || boardgameId.trim() === '') {
+            submitButton.disabled = true;
+        } else {
+            submitButton.disabled = false;
+        }
+    }
+
+    // Add event listener to monitor changes to boardgameid
+    document.getElementById('boardgameid').addEventListener('input', updateButtonState);
+
+    // Initial check when the page loads
+    updateButtonState();
 });
+
+

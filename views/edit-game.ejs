@@ -71,7 +71,10 @@
     <img src="<%= boardgame.image %>" alt="<%= boardgame.name %>">
     <div class="button-container">
         <a href="/add-game-session/<%= boardgame.id %>" class="button add-session-button">Add New Session</a>
-        <a href="/delete-game/<%= boardgame.id %>" class="button delete-button">Delete Board Game</a>
+        <form action="/edit-game/<%= boardgame.id %>" method="POST" style="margin: 0;">
+            <input type="hidden" name="boardgame_id" value="<%= boardgame.id %>">
+            <button type="submit" class="button delete-button">Delete Board Game</button>
+        </form>
         <a href="/" class="button add-session-button">Cancel</a>
     </div>
 </div>

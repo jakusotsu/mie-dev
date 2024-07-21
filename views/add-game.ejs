@@ -21,9 +21,9 @@
                 <input type="text" id="title" name="title" required autocomplete="off" placeholder="Start typing a game title...">
                 <div id="autocomplete-results" class="autocomplete-results"></div>
             </div>
-            <input type="hidden" id="boardgameid" name="boardgameid">
-            <input type="hidden" id="imageurl" name="imageurl">
-            <button type="submit" class="submit-button">Add Game</button>
+            <input type="hidden" id="boardgameid" name="boardgameid" value="" required>
+            <input type="hidden" id="imageurl" name="imageurl" required>
+            <button type="submit" id="submit-button" class="submit-button">Add Game</button>
         </form>
         <div class="button-container">
             <a href="/" class="cancel-button">Cancel</a>
