@@ -1,3 +1,20 @@
+Session Tracker
+=====
+This app allows the addition of boardgames and sessions of boardgames.
+
+Boardgames are displayed in a grid on top of the page. The ID and image are sourced from BoardGameGeek XML API.
+
+Adding a new boardgame is done via autocomplete search bar populated with BoardGameGeek Search API results.
+
+Sessions are displayed chronologically below the boardgame grid, with date and time.
+
+User may click an existing boardgame to add a new session of that boardgame along with the date and time, or to delete the boardgame.
+
+Deleting a boardgame will delete all sessions associated with that boardgame.
+
+
+
+
 Story: Board Game Directory
 =====
 

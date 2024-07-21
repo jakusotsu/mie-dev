@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (item) {
                 const image = item.querySelector('image');
-                return image ? image.textContent : 'No image available';
+                return image ? image.textContent : 'https://cf.geekdo-images.com/zxVVmggfpHJpmnJY9j-k1w__imagepage/img/6AJ0hDAeJlICZkzaeIhZA_fSiAI=/fit-in/900x600/filters:no_upscale():strip_icc()/pic1657689.jpg';
             } else {
                 throw new Error('Item not found');
             }

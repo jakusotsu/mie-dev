@@ -23,8 +23,6 @@ module.exports = {
                 if (err) {
                     console.error('Error inserting new session:', err);
                     callback(err); // Pass the error to the callback
-                } else {
-                    console.log('New session added successfully:', result);
                 }
             });
         }

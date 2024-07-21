@@ -9,17 +9,9 @@ const app = express();
 const { getHomePage} = require('./routes/index');
 const game = require('./routes/game');
 const game_session = require('./routes/game_session');
-
-// TODO: application port should come from config file
-const port = 3000;
-
-// TODO: database connection parameters should come from config file
-const db = mysql.createConnection({
-	host: 'localhost',
-	user: 'app',
-	password: 'wonderful',
-	database: 'miechallenge',
-	port: 3307 })
+const config = require('./config');
+const port = config.app.port;
+const db = mysql.createConnection(config.db);
 
 db.connect((err) => {
 	if (err) {
@@ -49,23 +41,6 @@ const createTables = async (db) => {
             )
         `);
         console.log('Tables created successfully');
-
-        // Insert into Boardgame table
-        const insertBoardgameQuery = `
-            INSERT IGNORE INTO Boardgame(boardgame_id, name, image) 
-            VALUES(397598, 'Dune: Imperium - Uprising', 'https://cf.geekdo-images.com/UVUkjMV_Q2paVUIUP30Vvw__original/img/BoUtCkd1NRO0bR1R5EwL51xIuXA=/0x0/filters:format(jpeg)/pic7664424.jpg')
-        `;
-        await db.query(insertBoardgameQuery);
-        console.log('Boardgame inserted successfully');
-
-        // Insert into Session table
-        const insertSessionQuery = `
-            INSERT IGNORE INTO Session(session_id, boardgame_id, session_date, session_time) 
-            VALUES(1, 397598, '2024-07-21', '18:30:00')
-        `;
-        await db.query(insertSessionQuery);
-        console.log('Session inserted successfully');
-
 
     } catch (err) {
         console.error('Error creating tables', err);
