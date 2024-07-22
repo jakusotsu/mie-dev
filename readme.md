@@ -17,7 +17,10 @@ Deleting a boardgame will delete all sessions associated with that boardgame.
 
 Demo
 =====
-https://github.com/jakusotsu/mie-dev-challenge/raw/master/demo.mp4
+<video width="800" height="600" controls>
+  <source src="https://github.com/jakusotsu/mie-dev-challenge/raw/master/demo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 How to Run
 =====
