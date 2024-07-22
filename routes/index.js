@@ -48,7 +48,7 @@ function formatSQLDate(sqlDate) {
 
 const getBoardgames = () => {
     return new Promise((resolve, reject) => {
-        db.query("SELECT * FROM Boardgame", (err, result) => {
+        db.query("SELECT * FROM Boardgame ORDER BY name", (err, result) => {
             if (err) {
                 reject(err);
             } else {

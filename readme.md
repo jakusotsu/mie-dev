@@ -14,6 +14,14 @@ User may click an existing boardgame to add a new session of that boardgame alon
 
 Deleting a boardgame will delete all sessions associated with that boardgame.
 
+
+Demo
+=====
+<video width="800" height="600" controls>
+  <source src="demo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 How to Run
 =====
 This app has been fully Dockerized with a preloaded schema.sql of my play group's favorite games
