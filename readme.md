@@ -1,5 +1,7 @@
 Session Tracker
 =====
+![Sample](sample.png)
+
 This app allows the addition of boardgames and sessions of boardgames.
 
 Boardgames are displayed in a grid on top of the page. The ID and image are sourced from BoardGameGeek XML API.
