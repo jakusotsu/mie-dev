@@ -1,0 +1,38 @@
+services:
+  db:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: wonderful
+      MYSQL_USER: app
+      MYSQL_PASSWORD: wonderful
+      MYSQL_DATABASE: miechallenge
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    healthcheck:
+      test: ["CMD", "mariadb-admin", "ping", "--silent", "-u", "app", "-pwonderful", "--port", "3306"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 5s
+
+  web:
+    build:
+      context: .
+    environment:
+      DB_HOST: db
+      DB_USER: app
+      DB_PASSWORD: wonderful
+      DB_DATABASE: miechallenge
+      PORT: 3000
+      DB_PORT: 3306
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  db_data:

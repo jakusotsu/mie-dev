@@ -12,7 +12,30 @@ User may click an existing boardgame to add a new session of that boardgame alon
 
 Deleting a boardgame will delete all sessions associated with that boardgame.
 
+How to Run
+=====
+This app has been fully Dockerized with a preloaded schema.sql of my play group's favorite games
 
+To build and run
+
+```
+docker-compose up --build
+```
+
+Then visit
+
+```
+http://localhost:3000/
+```
+
+
+Note
+=====
+The schema.sql is only used for initialization if the database volume doesn't exist.
+To allow for recreation of the initial database state, Down w/ the -v flag to remove the volume.
+```
+docker-compose down -v
+```
 
 
 Story: Board Game Directory

@@ -32,10 +32,7 @@ module.exports = {
             db.query(query, values, (err, result) => {
                 if (err) {
 					console.error('Error inserting new board game:', err);
-					alert('Error inserting new board game:', err);
-					res.redirect('/'); // Handle error appropriately
                 }
-                console.log('New board game added:', result);
             });
         }
 		// TODO db.query to insert game
