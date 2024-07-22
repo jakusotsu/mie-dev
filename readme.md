@@ -17,7 +17,7 @@ Deleting a boardgame will delete all sessions associated with that boardgame.
 
 Video Demo
 =====
-Note: The streaming software failed the appearance of the date picker.
+Note: The streaming software failed to capture the appearance of the date picker.
 
 https://github.com/user-attachments/assets/cc55a2a2-16a4-4c4a-846f-4d328297087f
 
