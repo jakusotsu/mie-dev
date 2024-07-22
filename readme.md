@@ -15,9 +15,12 @@ User may click an existing boardgame to add a new session of that boardgame alon
 Deleting a boardgame will delete all sessions associated with that boardgame.
 
 
-Demo Video
+Demo
 =====
-https://raw.githubusercontent.com/jakusotsu/mie-dev-challenge/master/demo.mp4
+<video width="800" height="600" controls>
+  <source src="https://raw.githubusercontent.com/jakusotsu/mie-dev-challenge/master/demo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 How to Run
 =====
